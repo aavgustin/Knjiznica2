@@ -1,4 +1,5 @@
 <template>
+  <div class="text-h3 text-weight-bolder text-center">Lokacija</div>
   <q-page padding>
     <div id="map" style="height:500px;"></div>
   </q-page>

@@ -8,6 +8,7 @@ const port = 3000;
 
 // Parser za JSON podatke
 app.use(bodyParser.json());
+app.use(cors());
 
 // Parser za podatke iz formi
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -22,7 +23,7 @@ const connection = mysql.createConnection({
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/api/knjige", (req, res) => {
-    connection.query("SELECT * FROM knjige", (error, results) => {
+    connection.query("SELECT * FROM knjiga", (error, results) => {
       if (error) throw error;
       res.send(results);
     });
@@ -81,6 +82,18 @@ app.get("/api/korisnici/:id_korisnik", (req, res) => {
       res.send(results);
     });
 });
+
+//PUT
+
+app.post("/api/rezerv_knjige", (req, res) => {
+    const data = req.body;
+    rezervacija = [[date.today, data.id_knjiga, data.id_korisnik]]
+    connection.query("INSERT INTO rezervacija (datum, knjiga, korisnik) VALUES ?", [rezervacija], (error, results) => {
+      if (error) throw error;
+      res.send(results);
+    });
+  });
+  
 
 connection.connect(function(err) {
     if (err) throw err;

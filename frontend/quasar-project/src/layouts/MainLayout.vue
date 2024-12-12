@@ -101,7 +101,14 @@ const linksList = [
     caption: 'Registracija',
     icon: 'code',
     link: '#/Registracija'
+  },
+  {
+    title: 'Popis knjiga baze',
+    caption: 'Popis knjiga baze',
+    icon: 'code',
+    link: '#/Popisknjigabaze'
   }
+  
 ]
 
 const leftDrawerOpen = ref(false)

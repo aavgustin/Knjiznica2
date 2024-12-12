@@ -107,7 +107,14 @@ const linksList = [
     caption: 'Popis knjiga baze',
     icon: 'code',
     link: '#/Popisknjigabaze'
+  },
+  {
+    title: 'Rezervacije knjiga',
+    caption: 'Rezervacije',
+    icon: 'code',
+    link: '#/Rezervacije'
   }
+
   
 ]
 

@@ -47,11 +47,11 @@ app.get("/api/slob_knjige/:id_knjige", (req, res) => {
     });
 });
 app.get("/api/rezerv_knjige", (req, res) => {
-    connection.query("/api/rezerv_knjige	GET	Lista rezerviranih knjiga	SELECT * FROM knjiga, rezervacija WHERE knjiga.id=rezervacija.knjiga", (error, results) => {
+  connection.query(`SELECT knjiga.naslov, knjiga.autor, rezervacija.korisnik, rezervacija.datum_rez FROM knjiga INNER JOIN rezervacija ON knjiga.id = rezervacija.id`, (error, results) => {
       if (error) throw error;
       res.send(results);
     });
-});
+});       
 app.get("/api/rezerv_knjige_korisnici", (req, res) => {
     connection.query("/api/rezerv_knjige_korisnici	GET	Lista rezerviranih knjiga s korisnicima	SELECT * FROM knjiga, rezervacija, korisnik WHERE knjiga.id=rezervacija.knjiga and korisnik.id=rezervacija.korisnik", (error, results) => {
       if (error) throw error;

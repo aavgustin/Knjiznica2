@@ -3,7 +3,7 @@
     <div class="q-pa-md">
       <q-table
         separator="horizontal"
-        title="Popis knjiga"
+        title="Rezervacije"
         title-class="text-h4 text-bold text-red-9"
         :rows="books"
         :columns="columns"
@@ -11,7 +11,7 @@
         table-class="text-black"
         table-style="border: 3px solid black;"
         table-header-style="height: 65px"
-        table-header-class="bg-red-2"
+        table-header-class="bg-blue-2"
         bordered
         flat
         square
@@ -67,15 +67,7 @@ const style2 = {
     };
  
 const columns = [
-  {
-    name:'id',
-    label:'id',
-    field:'id',
-    align:'left',
-    sortable: true,
-    style: style1,
-    headerStyle: style2
-  },
+
   {
     name: 'naslov',
     label: 'naslov',
@@ -94,25 +86,17 @@ const columns = [
     headerStyle: style2
   },
   {
-    name: 'opis',
-    label: 'opis',
-    field: 'opis',
+    name: 'korisnik',
+    label: 'korisnik',
+    field: 'korisnik',
     align: 'left',
     style: style1,
     headerStyle: style2
   },
   {
-    name: 'slika',
-    label: 'slika',
-    field: 'slika',
-    align:'center',
-    style: style1,
-    headerStyle: style2
-  },
-  {
-    name: 'stanje',
-    label: 'stanje',
-    field: 'stanje',
+    name: 'datum',
+    label: 'datum',
+    field: 'datum',
     align:'center',
     style: style1,
     headerStyle: style2
@@ -136,7 +120,7 @@ export default {
   },
   methods: {
     async loadBooks() {
-      await axios.get('http://localhost:3000/api/knjige/')
+      await axios.get('http://localhost:3000/api/rezerv_knjige/')
         .then(result => {
           console.log(result);
  

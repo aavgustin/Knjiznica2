@@ -28,6 +28,28 @@ app.get("/api/knjige", (req, res) => {
       res.send(results);
     });
 });
+
+app.get("/api/rezerv_knjige", (req, res) => {
+  connection.query(`SELECT rezervacija.id, rezervacija.datum_rez, knjiga.naslov, knjiga.autor, korisnik.ime, korisnik.prezime
+        FROM rezervacija
+        JOIN knjiga ON rezervacija.knjiga = knjiga.id
+        JOIN korisnik ON rezervacija.korisnik = korisnik.id`, (error, results) => {
+      if (error) throw error;
+      res.send(results);
+    });
+});
+
+app.post("/api/unos_knjige", (req, res) => {
+  const data = req.body;
+  //naslov, autor, opis, slika, stanje
+  knjiga = [[data.naslov, data.autor, data.opis, data.slika, data.stanje]]
+  connection.query("INSERT INTO knjiga (naslov, autor, opis, slika, stanje) VALUES ?",
+    [knjiga], (error, results) => {
+    if (error) throw error;
+    res.send(results);
+  });
+});
+/*NEKORIŠTENE 
 app.get("/api/knjige/:naslov", (req, res) => {
     connection.query("SELECT * FROM knjiga WHERE naslov like "%naziv%"", (error, results) => {
       if (error) throw error;
@@ -46,15 +68,7 @@ app.get("/api/slob_knjige/:id_knjige", (req, res) => {
       res.send(results);
     });
 });
-app.get("/api/rezerv_knjige", (req, res) => {
-  connection.query(`SELECT rezervacija.id, rezervacija.datum_rez, knjiga.naslov, knjiga.autor, korisnik.ime, korisnik.prezime
-        FROM rezervacija
-        JOIN knjiga ON rezervacija.knjiga = knjiga.id
-        JOIN korisnik ON rezervacija.korisnik = korisnik.id`, (error, results) => {
-      if (error) throw error;
-      res.send(results);
-    });
-});       
+
 app.get("/api/rezerv_knjige_korisnici", (req, res) => {
     connection.query("/api/rezerv_knjige_korisnici	GET	Lista rezerviranih knjiga s korisnicima	SELECT * FROM knjiga, rezervacija, korisnik WHERE knjiga.id=rezervacija.knjiga and korisnik.id=rezervacija.korisnik", (error, results) => {
       if (error) throw error;
@@ -96,7 +110,7 @@ app.post("/api/rezerv_knjige", (req, res) => {
       res.send(results);
     });
   });
-  
+ */ 
 
 connection.connect(function(err) {
     if (err) throw err;

@@ -12,7 +12,8 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          
+          Knjiznica Admin
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
@@ -46,77 +47,56 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed,ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 
 defineOptions({
-  name: 'MainLayout'
+  name: 'AdminLayout'
+})
+/*
+let title = computed(() => {
+  return "Knjiznica (admin)";
 })
 
-
-
+PANDORA'S BOX, CRASHES EVERYTHING WITHOUT computed,ref
+*/
 const linksList = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Naslovnica',
-    caption: 'Naslovnica',
+    title: 'Admin Naslovnica',
+    caption: 'Admin Naslovnica',
     icon: 'book',
-    link: '#/'
+    link: '#/admin'
   },
   {
     title: 'Popis knjiga',
     caption: 'Popis knjiga u knjiznici',
     icon: 'book',
-    link: '#/popisKnjiga'
+    link: '#/admin/popisKnjiga'
   },
   {
     title: 'Pretrazivanje',
     caption: 'Pretrazivanje',
     icon: 'book',
-    link: '#/TraziKnjigu'
+    link: '#/admin/pretrazivanje'
   },
   {
-    title: 'O nama',
-    caption: 'O nama',
+    title: 'Popis Korisnika',
+    caption: 'Popis korisnika',
     icon: 'rss_feed',
-    link: '#/ONama'
+    link: '#/admin/popis_korisnika'
   },
   {
-    title: 'Lokacija',
-    caption: 'Lokacija',
+    title: 'Unos Knjiga',
+    caption: 'Unos knjiga',
     icon: 'record_voice_over',
-    link: '#/Lokacija'
+    link: '#/admin/unos_knjiga'
   },
   {
-    title: 'Login',
-    caption: 'Login',
+    title: 'Logout',
+    caption: 'Logout',
     icon: 'code',
-    link: '#/Login'
-  },
-  {
-    title: 'Registracija',
-    caption: 'Registracija',
-    icon: 'code',
-    link: '#/Registracija'
-  },
-  {
-    title: 'Popis knjiga baze',
-    caption: 'Popis knjiga baze',
-    icon: 'code',
-    link: '#/Popisknjigabaze'
-  },
-  {
-    title: 'Rezervacije knjiga',
-    caption: 'Rezervacije',
-    icon: 'code',
-    link: '#/Rezervacije'
+    link: '#/logout'
   }
-
   
 ]
 

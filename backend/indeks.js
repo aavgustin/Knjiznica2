@@ -47,7 +47,10 @@ app.get("/api/slob_knjige/:id_knjige", (req, res) => {
     });
 });
 app.get("/api/rezerv_knjige", (req, res) => {
-  connection.query(`SELECT knjiga.naslov, knjiga.autor, rezervacija.korisnik, rezervacija.datum_rez FROM knjiga INNER JOIN rezervacija ON knjiga.id = rezervacija.id`, (error, results) => {
+  connection.query(`SELECT rezervacija.id, rezervacija.datum_rez, knjiga.naslov, knjiga.autor, korisnik.ime, korisnik.prezime
+        FROM rezervacija
+        JOIN knjiga ON rezervacija.knjiga = knjiga.id
+        JOIN korisnik ON rezervacija.korisnik = korisnik.id`, (error, results) => {
       if (error) throw error;
       res.send(results);
     });
